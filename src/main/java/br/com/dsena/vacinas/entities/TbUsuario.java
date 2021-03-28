@@ -1,8 +1,19 @@
 package br.com.dsena.vacinas.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Date;
 
+/*
+Utilizado as anotações do Lombok, @Id onde é referenciada a PK e @Column onde é referenciada o nome da coluna da tabela
+A @Entity referencia a classe como uma Entidade e na PK usamos a anotação para gerar automaticamente a sequência do Id
+do tipo IDENTITY, através da anotação @GeneratedValue.
+Foi utilizado a anotação @JsonFormat para formatar a data recebida para o padrão brasileiro (dd/mm/yyyy).
+Gerado getters and seters através da anotação @Data com o auxílio do Lombok
+ */
+@Data
 @Entity
 @Table(name="TbUsuario")
 public class TbUsuario {
@@ -21,59 +32,6 @@ public class TbUsuario {
     private String cpf;
 
     @Column(name="data_nascimento")
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataNascimento;
-
-    //Getters and Seters
-    public Long getIdusuario() {
-        return idusuario;
-    }
-
-    public void setIdusuario(Long idusuario) {
-        this.idusuario = idusuario;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public Date getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(Date dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
-    //Construtor com todos atributos como argumento
-    public TbUsuario(Long idusuario, String nome, String email, String cpf, Date dataNascimento) {
-        this.idusuario = idusuario;
-        this.nome = nome;
-        this.email = email;
-        this.cpf = cpf;
-        this.dataNascimento = dataNascimento;
-    }
-
-    //Construtor sem argumentos
-    public TbUsuario() {
-    }
 }

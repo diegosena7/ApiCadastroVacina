@@ -6,6 +6,13 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.Date;
 
+/*
+Utilizado as anotações do Lombok, @Id onde é referenciada a PK e @Column onde é referenciada o nome da coluna da tabela
+A @Entity referencia a classe como uma Entidade e na PK usamos a anotação para gerar automaticamente a sequência do Id
+do tipo IDENTITY, através da anotação @GeneratedValue.
+Foi utilizado a anotação @JsonFormat para formatar a data recebida para o padrão brasileiro (dd/mm/yyyy).
+Gerado getters and seters através da anotação @Data com o auxílio do Lombok
+ */
 @Data
 @Entity
 @Table(name="tb_cadastro_aplicadao_vacina")
@@ -23,48 +30,4 @@ public class TbCadastroAplicacaoVacinas {
     @Column(name="data_vacina", nullable = false)
     @JsonFormat(pattern = "dd/MM/yyyy")
     private Date dataVacina;
-
-    public Integer getId_vacina() {
-        return id_vacina;
-    }
-
-    public void setId_vacina(Integer id_vacina) {
-        this.id_vacina = id_vacina;
-    }
-
-    public String getNomeVacina() {
-        return nomeVacina;
-    }
-
-    public void setNomeVacina(String nomeVacina) {
-        this.nomeVacina = nomeVacina;
-    }
-
-    public String getEmailUsuario() {
-        return emailUsuario;
-    }
-
-    public void setEmailUsuario(String emailUsuario) {
-        this.emailUsuario = emailUsuario;
-    }
-
-    public Date getDataVacina() {
-        return dataVacina;
-    }
-
-    public void setDataVacina(Date dataVacina) {
-        this.dataVacina = dataVacina;
-    }
-
-    //Construtor com todos atributos como argumento
-    public TbCadastroAplicacaoVacinas(Integer id_vacina, String nomeVacina, String emailUsuario, Date dataVacina) {
-        this.id_vacina = id_vacina;
-        this.nomeVacina = nomeVacina;
-        this.emailUsuario = emailUsuario;
-        this.dataVacina = dataVacina;
-    }
-
-    //Construtor sem argumentos
-    public TbCadastroAplicacaoVacinas() {
-    }
 }
